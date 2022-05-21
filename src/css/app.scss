@@ -1,1 +1,23 @@
-// app global css in SCSS form
+@import url('https://fonts.googleapis.com/css2?family=Nunito');
+
+body {
+  background-color: $dark;
+  color: white;
+  font-family: Nunito;
+}
+
+h1 {
+  line-height: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: $primary;
+}
+
+h2 {
+  line-height: 0rem;
+  font-size: 1.8rem;
+}
+
+.q-menu {
+  background-color: $less-dark;
+}
