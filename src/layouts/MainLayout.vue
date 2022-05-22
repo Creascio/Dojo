@@ -1,13 +1,20 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header class="header">
+    <q-header class="header" :class="!isTop ? 'header-short' : ''">
       <q-toolbar>
-        <q-img src="logo.png" style="width: 40px" />
+        <router-link to="/">
+          <q-img
+            class="logo"
+            src="logo.png"
+            :style="isTop ? 'width: 40px' : 'width: 30px'"
+          />
+        </router-link>
 
-        <q-toolbar-title class="q-ml-md">
-          <h1>Creascio <span class="light">Dojo</span> </h1>
+        <q-toolbar-title class="q-ml-md" v-if="isTop">
+          <router-link to="/">
+            <h1>Creascio <span class="light">Dojo</span></h1>
+          </router-link>
         </q-toolbar-title>
-
       </q-toolbar>
     </q-header>
 
@@ -17,76 +24,36 @@
   </q-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script lang="ts" setup>
+import { Ref, ref } from 'vue';
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
+const isTop: Ref<boolean> = ref(false);
 
-export default defineComponent({
-  name: 'MainLayout',
+const handleScroll = () => {
+  isTop.value = window.scrollY === 0;
+};
 
-  setup () {
-    const leftDrawerOpen = ref(false)
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
-});
+window.addEventListener('scroll', handleScroll);
 </script>
 
 <style lang="scss">
 .header {
-  background-color: transparent;
+  background-color: $dark;
   padding: 16px;
   border-bottom: solid 3px $primary;
+  transition: all linear 0.2s;
+
+  .logo {
+    transition: all linear 0.2s;
+  }
+
+  &-short {
+    padding: 8px 16px;
+
+    .logo {
+      margin-left: 5px;
+    }
+  }
 
   .light {
     padding-left: 8px;

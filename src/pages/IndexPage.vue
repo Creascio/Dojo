@@ -1,9 +1,7 @@
 <template>
   <q-page class="home-list row justify-center">
-
     <div class="col-xs-12 col-md-8">
       <div class="row q-gutter-md justify-between items-center">
-
         <q-btn-dropdown
           class="btn"
           color="primary"
@@ -14,7 +12,6 @@
           no-caps
         >
           <q-list>
-
             <q-item clickable v-close-popup @click="technology = 'Tous'">
               <q-item-section>
                 <q-item-label>Tous</q-item-label>
@@ -26,7 +23,6 @@
                 <q-item-label>Javascript</q-item-label>
               </q-item-section>
             </q-item>
-
           </q-list>
         </q-btn-dropdown>
 
@@ -40,41 +36,49 @@
           no-caps
         >
           <q-list>
-
             <q-item clickable v-close-popup @click="level = 'Tous'">
               <q-item-section>
                 <q-item-label>Tous</q-item-label>
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-close-popup @click="level = 'Débutant'" >
+            <q-item clickable v-close-popup @click="level = 'Débutant'">
               <q-item-section>
                 <q-item-label>Débutant</q-item-label>
               </q-item-section>
             </q-item>
-
           </q-list>
         </q-btn-dropdown>
 
         <q-space />
 
-        <q-input class="input" v-model="search" placeholder="Rechercher... " dense borderless  >
+        <q-input
+          class="input"
+          v-model="search"
+          placeholder="Rechercher... "
+          dense
+          borderless
+        >
           <template v-slot:prepend>
             <q-icon name="search" color="primary" />
           </template>
         </q-input>
-
       </div>
     </div>
 
     <div class="list col-xs-12 col-md-8 q-gutter-y-md">
-      <div v-for="project in projects" :key="project.id" class="card row">
+      <q-item
+        v-for="project in projects"
+        :key="project.id"
+        class="card row"
+        :to="'/project/' + project.id"
+      >
         <div class="image"></div>
 
         <div class="col q-pt-sm">
           <div class="row q-gutter-x-lg q-pb-md">
             <div>
-               <div class="row items-center">
+              <div class="row items-center">
                 <q-icon name="settings" />
                 <div class="q-ml-sm">{{ project.tech }}</div>
               </div>
@@ -98,9 +102,8 @@
           <h2 class="q-pt-sm">{{ project.title }}</h2>
           <div class="text-justify">{{ project.description }}</div>
         </div>
-      </div>
+      </q-item>
     </div>
-
   </q-page>
 </template>
 
@@ -109,9 +112,8 @@ import { ref } from 'vue';
 import projects from 'src/data/projects';
 
 const technology = ref('Tous');
-const level = ref('Tous')
+const level = ref('Tous');
 const search = ref('');
-
 </script>
 
 <style lang="scss">
@@ -165,6 +167,5 @@ const search = ref('');
       color: white;
     }
   }
-
 }
 </style>
