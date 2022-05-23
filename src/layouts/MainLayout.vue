@@ -37,7 +37,7 @@
 <script lang="ts" setup>
 import { Ref, ref } from 'vue';
 
-const isTop: Ref<boolean> = ref(false);
+const isTop: Ref<boolean> = ref(true);
 
 const handleScroll = () => {
   isTop.value = window.scrollY === 0;
