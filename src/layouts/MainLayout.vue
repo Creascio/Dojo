@@ -21,6 +21,16 @@
     <q-page-container class="q-pa-md">
       <router-view />
     </q-page-container>
+
+    <q-footer class="footer row items-center justify-between">
+      <div>
+        <q-btn label="Notre discord" icon="discord"  href="https://discord.gg/vtkdzJbGq4" target="_blank" no-caps flat />
+      </div>
+
+      <div>Ce site web à été créé pour vous proposer des exercices / projets afin de vous exercer sur les technos de vos choix.</div>
+
+      <div> Par Léo SALLARD et Sofia DA SILVA RIBEIRO </div>
+    </q-footer>
   </q-layout>
 </template>
 
@@ -37,10 +47,18 @@ window.addEventListener('scroll', handleScroll);
 </script>
 
 <style lang="scss">
+.footer {
+  border-top: solid 2px $primary;
+  position: absolute;
+  background-color: $dark;
+  bottom: 0;
+  padding: 16px;
+}
+
 .header {
   background-color: $dark;
   padding: 16px;
-  border-bottom: solid 3px $primary;
+  border-bottom: solid 2px $primary;
   transition: all linear 0.2s;
 
   .logo {
