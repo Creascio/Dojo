@@ -152,20 +152,5 @@ const search = ref('');
     height: 30px;
   }
 
-  .input {
-    padding: 0 20px;
-    background-color: $less-dark;
-    border-radius: 6px;
-    transition: linear 0.2s;
-
-    &:hover {
-      background-color: #24243b;
-    }
-
-    input {
-      width: 180px;
-      color: white;
-    }
-  }
 }
 </style>

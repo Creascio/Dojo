@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <normal-header />
+    <admin-header />
 
     <q-page-container class="q-pa-md">
       <router-view />
@@ -19,7 +19,18 @@
 </template>
 
 <script lang="ts" setup>
-import NormalHeader from 'src/components/NormalHeader.vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from 'src/stores/auth';
+
+import AdminHeader from 'src/components/AdminHeader.vue';
+
+const router = useRouter();
+const { checkLogged, isLogged } = useAuthStore();
+
+checkLogged();
+if(!isLogged) {
+  router.push({ name: 'sign-in' })
+}
 </script>
 
 <style lang="scss">
